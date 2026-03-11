@@ -1,0 +1,49 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# =========================
+# Virtual environments
+# =========================
+venv/
+.env/
+.envrc
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Large data (datasets)
+# =========================
+data/raw/videos/
+data/raw/images/
+data/raw/GT_horizon/
+
+# calibration images también si pesan mucho
+data/calibration/
+
+# =========================
+# Results
+# =========================
+results/output_videos/
+results/images/
+results/plots/
+results/metrics/
+
+# =========================
+# Matlab outputs
+# =========================
+*.mat
+
+# =========================
+# Temporary experiment files
+# =========================
+*.log
+*.tmp
