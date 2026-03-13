@@ -21,7 +21,7 @@ LensDistortionFromHorizonLines
 │   │
 │   └── raw
 │       ├── videos                      # Vídeos originales de entrada
-│       ├── images
+│       ├── images                      # Imágenes de test
 │       └── GT_horizon                  # Datos GT de horizontes
 │
 ├── matlab                              # Scripts MATLAB para generar imágenes de horizontes
@@ -127,7 +127,19 @@ Esto generará el módulo Python necesario para ejecutar el pipeline.
 
 # Datos de entrada
 
-El sistema utiliza dos tipos de datos:
+Los vídeos y los datos de ground truth utilizados en este proyecto pertenecen al Singapore Maritime Dataset, que contiene secuencias marítimas junto con anotaciones de líneas de horizonte.
+
+El dataset completo puede descargarse en:
+
+https://sites.google.com/site/dilipprasad/home/singapore-maritime-dataset
+
+Descarga directa:
+
+https://drive.google.com/file/d/0B43_rYxEgelVb2VFaXB4cE56RW8/view?resourcekey=0-67PrivAOYTGyWxAO_-2n1A
+
+Una vez descargado y descomprimido, los archivos relevantes deben colocarse en las siguientes carpetas del repositorio.
+
+El sistema utiliza **tres tipos de datos de entrada**:
 
 ### Vídeos
 
@@ -145,6 +157,34 @@ MVI_0789_VIS_OB.avi
 ...
 ```
 
+Estos vídeos se utilizan para:
+
+* extraer frames
+* aplicar distorsión sintética
+* evaluar la corrección de distorsión
+
+---
+
+### Datos GT de líneas de horizonte
+
+Ubicación:
+
+```
+data/raw/GT_horizon/
+```
+
+Formato:
+
+```
+*.mat
+```
+
+Estos archivos `.mat` contienen las **líneas de horizonte ground truth** anotadas para cada frame del vídeo.
+
+Se utilizan en los scripts de **MATLAB** para generar las imágenes de horizonte acumulado que se emplean en la estimación de la distorsión.
+
+---
+
 ### Imágenes de calibración
 
 Ubicación:
@@ -153,10 +193,92 @@ Ubicación:
 data/calibration/
 ```
 
-Cada secuencia contiene imágenes de horizontes acumulados generadas a partir de múltiples frames.
+Estas imágenes se generan a partir de los **datos GT de horizonte** utilizando los scripts de MATLAB (`horizontes_GT_submuestreo_frames_uniforme.m`), y posteriormente aplicandoles una distorsión a partir de `distorsion.py`
+
 
 
 # Ejecución del pipeline
+
+El pipeline completo se compone de varios scripts auxiliares en **Python** y en **MATLAB** para generar las imágenes de horizontes utilizadas en la calibración.
+
+## Generación de imágenes de horizonte (MATLAB)
+
+Antes de ejecutar los experimentos es necesario generar las imágenes de horizontes acumulados a partir de los datos de GT.
+
+Script principal:
+
+```
+matlab/horizontes_GT_submuestreo_frames_uniforme.m
+```
+
+Este script:
+
+* Genera **imágenes de horizonte acumulado** a partir de los datos de horizonte GT.
+* Permite **submuestrear los frames del vídeo** para construir una imagen de calibración más robusta.
+
+Estas imágenes se utilizan posteriormente para **estimar los parámetros de distorsión** (una vez distorsionadas).
+
+---
+
+# Scripts de Python
+
+Los scripts principales se encuentran en:
+
+```
+python/
+```
+
+### distorsion.py
+
+Aplica **distorsión radial sintética** a una imagen con parámetros conocidos (`d1`, `d2`, `cx`, `cy`).
+Se utiliza para generar imágenes distorsionadas de prueba.
+
+---
+
+### desdistorsion_gt.py
+
+Corrige una imagen distorsionada **utilizando los parámetros de distorsión conocidos (ground truth)**.
+Permite evaluar la calidad de la corrección cuando los parámetros son correctos. 
+
+---
+
+### learn_and_apply_undistortion.py
+
+Ejecuta el algoritmo de **estimación automática de distorsión** a partir de las imágenes de horizonte distorsionadas y aplica la corrección a la imagen o frame correspondiente.
+
+Internamente llama al módulo C++ mediante los bindings de Python (`lens_distortion_module`). 
+
+---
+
+### match_opencv_fisheye_direct.py
+
+Corrige la distorsión de una imagen formada por rectas paralelas estimando parámetros. 
+
+---
+
+# Ejecución de scripts
+
+Cada script puede ejecutarse de forma independiente desde la raíz del repositorio.
+
+Ejemplo:
+
+```
+python python/distorsion.py
+```
+
+```
+python python/desdistorsion_gt.py
+```
+
+```
+python python/learn_and_apply_undistortion.py
+```
+
+```
+python python/match_opencv_fisheye_direct.py
+```
+
+---
 
 El script principal es:
 
@@ -172,16 +294,18 @@ Este script realiza automáticamente:
 4. corrección de las imágenes
 5. cálculo de métricas de calidad
 
+Para ejecutarlo es necesario primero construir las imágenes de horizontes acumulados a traves de `horizontes_GT_submuestreo_frames_uniforme.m`, aplicarles distorsión con `distorsion.py` y llevarlas a la carpeta de calibración
+
 Ejecutar:
 
 ```
 python python/run_video_experiment.py
 ```
-
+Para hacer una prueba mínima de que los códigos funcionan se incluye una imagen dentro de data/raw/images/
 
 # Resultados
 
-Los resultados se guardan en:
+Los resultados del script principal se guardan en:
 
 ```
 results/output_videos/

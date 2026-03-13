@@ -1,49 +1,103 @@
-# =========================
+# =====================================================
+# C / C++ compilación (LensDistortionFromLines)
+# =====================================================
+
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+*.app
+
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake-build*/
+Makefile
+
+# =====================================================
 # Python
-# =========================
+# =====================================================
+
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
 
-# =========================
-# Virtual environments
-# =========================
+# entornos virtuales
+.env
+.venv
+env/
 venv/
-.env/
-.envrc
+ENV/
 
-# =========================
-# OS
-# =========================
+# paquetes python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# =====================================================
+# Jupyter / IDE
+# =====================================================
+
+.ipynb_checkpoints
+.idea/
+.vscode/
+
+# =====================================================
+# Logs y temporales
+# =====================================================
+
+*.log
+*.tmp
+*.swp
+
+# =====================================================
+# Sistema operativo
+# =====================================================
+
 .DS_Store
 Thumbs.db
 
-# =========================
-# Large data (datasets)
-# =========================
-data/raw/videos/
-data/raw/images/
-data/raw/GT_horizon/
+# =====================================================
+# DATASET (NO subir datos)
+# =====================================================
 
-# calibration images también si pesan mucho
-data/calibration/
+data/raw/videos/*
+data/raw/GT_horizon/*
+data/calibration/*
 
-# =========================
-# Results
-# =========================
-results/output_videos/
-results/images/
-results/plots/
-results/metrics/
+# mantener estructura
+!data/raw/videos/.gitkeep
+!data/raw/GT_horizon/.gitkeep
+!data/calibration/.gitkeep
 
-# =========================
-# Matlab outputs
-# =========================
-*.mat
+# =====================================================
+# RESULTADOS EXPERIMENTOS
+# =====================================================
 
-# =========================
-# Temporary experiment files
-# =========================
-*.log
-*.tmp
+results/output_videos/*
+results/plots/*
+results/metrics/*
+results/images/*
+
+# mantener estructura
+!results/output_videos/.gitkeep
+!results/plots/.gitkeep
+!results/metrics/.gitkeep
+!results/images/.gitkeep
+
+# =====================================================
+# OUTPUTS DE SCRIPTS
+# =====================================================
+
+output/
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.tif
