@@ -1,107 +1,59 @@
-# =====================================================
-# C / C++ compilación (LensDistortionFromLines)
-# =====================================================
+# Entornos y cachés de Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
 
+# Jupyter
+.ipynb_checkpoints/
+
+# Archivos del sistema/editor
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+
+# Datos pesados o generados
+data/raw/images/
+data/raw/videos/
+data/calibration/*.npz
+results/images/*
+results/metrics/*
+results/output_videos/*
+results/plots/*
+
+# Mantener estructura vacía
+!data/raw/images/.gitkeep
+!data/raw/videos/.gitkeep
+!data/calibration/.gitkeep
+!results/images/.gitkeep
+!results/metrics/.gitkeep
+!results/output_videos/.gitkeep
+!results/plots/.gitkeep
+
+# Builds y artefactos de terceros
+third_party/LensDistortionFromLines/python/CMakeFiles/
+third_party/LensDistortionFromLines/python/CMakeCache.txt
+third_party/LensDistortionFromLines/python/Makefile
+third_party/LensDistortionFromLines/python/cmake_install.cmake
+third_party/LensDistortionFromLines/python/cameraLensCalibration
+
+# Artefactos de compilación generales
+build/
+dist/
 *.o
 *.obj
 *.a
 *.lib
-*.so
-*.dylib
 *.dll
+*.dylib
 *.exe
-*.out
-*.app
 
-build/
-CMakeFiles/
-CMakeCache.txt
-cmake-build*/
-Makefile
-
-# =====================================================
-# Python
-# =====================================================
-
-__pycache__/
-*.py[cod]
-*$py.class
-
-# entornos virtuales
-.env
-.venv
-env/
-venv/
-ENV/
-
-# paquetes python
-build/
-dist/
-*.egg-info/
-.eggs/
-
-# =====================================================
-# Jupyter / IDE
-# =====================================================
-
-.ipynb_checkpoints
-.idea/
-.vscode/
-
-# =====================================================
-# Logs y temporales
-# =====================================================
-
-*.log
-*.tmp
-*.swp
-
-# =====================================================
-# Sistema operativo
-# =====================================================
-
-.DS_Store
-Thumbs.db
-
-# =====================================================
-# DATASET (NO subir datos)
-# =====================================================
-
-data/raw/videos/*
-data/raw/GT_horizon/*
-data/calibration/*
-
-# mantener estructura
-!data/raw/videos/.gitkeep
-!data/raw/GT_horizon/.gitkeep
-!data/calibration/.gitkeep
-# permitir imágenes de ejemplo
-!data/raw/images/
-
-# =====================================================
-# RESULTADOS EXPERIMENTOS
-# =====================================================
-
-results/output_videos/*
-results/plots/*
-results/metrics/*
-results/images/*
-
-# mantener estructura
-!results/output_videos/.gitkeep
-!results/plots/.gitkeep
-!results/metrics/.gitkeep
-!results/images/.gitkeep
-
-# =====================================================
-# OUTPUTS DE SCRIPTS
-# =====================================================
-
-output/
-*.png
-*.jpg
-*.jpeg
-*.bmp
-*.tif
-
-!data/raw/images/*.png
+third_party/LensDistortionFromLines/python/extern/pybind11/CMakeFiles/
+third_party/LensDistortionFromLines/python/extern/pybind11/Makefile
