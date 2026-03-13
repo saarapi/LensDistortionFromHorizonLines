@@ -75,6 +75,8 @@ data/calibration/*
 !data/raw/videos/.gitkeep
 !data/raw/GT_horizon/.gitkeep
 !data/calibration/.gitkeep
+# permitir imágenes de ejemplo
+!data/raw/images/
 
 # =====================================================
 # RESULTADOS EXPERIMENTOS
