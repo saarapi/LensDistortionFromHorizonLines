@@ -43,6 +43,8 @@ third_party/LensDistortionFromLines/python/CMakeCache.txt
 third_party/LensDistortionFromLines/python/Makefile
 third_party/LensDistortionFromLines/python/cmake_install.cmake
 third_party/LensDistortionFromLines/python/cameraLensCalibration
+third_party/LensDistortionFromLines/python/extern/pybind11/CMakeFiles/
+third_party/LensDistortionFromLines/python/extern/pybind11/Makefile
 
 # Artefactos de compilación generales
 build/
@@ -55,5 +57,17 @@ dist/
 *.dylib
 *.exe
 
-third_party/LensDistortionFromLines/python/extern/pybind11/CMakeFiles/
-third_party/LensDistortionFromLines/python/extern/pybind11/Makefile
+/output
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+*.jpg
+*.jpeg
+*.png
+*.tif
+*.tiff
+
+!data/raw/images/*.png
+
