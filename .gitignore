@@ -1,0 +1,107 @@
+# =====================================================
+# C / C++ compilación (LensDistortionFromLines)
+# =====================================================
+
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+*.app
+
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake-build*/
+Makefile
+
+# =====================================================
+# Python
+# =====================================================
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# entornos virtuales
+.env
+.venv
+env/
+venv/
+ENV/
+
+# paquetes python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# =====================================================
+# Jupyter / IDE
+# =====================================================
+
+.ipynb_checkpoints
+.idea/
+.vscode/
+
+# =====================================================
+# Logs y temporales
+# =====================================================
+
+*.log
+*.tmp
+*.swp
+
+# =====================================================
+# Sistema operativo
+# =====================================================
+
+.DS_Store
+Thumbs.db
+
+# =====================================================
+# DATASET (NO subir datos)
+# =====================================================
+
+data/raw/videos/*
+data/raw/GT_horizon/*
+data/calibration/*
+
+# mantener estructura
+!data/raw/videos/.gitkeep
+!data/raw/GT_horizon/.gitkeep
+!data/calibration/.gitkeep
+# permitir imágenes de ejemplo
+!data/raw/images/
+
+# =====================================================
+# RESULTADOS EXPERIMENTOS
+# =====================================================
+
+results/output_videos/*
+results/plots/*
+results/metrics/*
+results/images/*
+
+# mantener estructura
+!results/output_videos/.gitkeep
+!results/plots/.gitkeep
+!results/metrics/.gitkeep
+!results/images/.gitkeep
+
+# =====================================================
+# OUTPUTS DE SCRIPTS
+# =====================================================
+
+output/
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.tif
+
+!data/raw/images/*.png
